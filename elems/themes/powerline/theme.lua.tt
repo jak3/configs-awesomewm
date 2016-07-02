@@ -3,6 +3,7 @@
 
 <% define_locals do
   variable :"awesome_wm.theme.name", type: :string, as: :theme_name
+  variable :"awesome_wm.theme.dir", type: :string, as: :theme_dir
 
   variable :"awesome_wm.font.name",      type: :string, as: :font_name
   variable :"awesome_wm.font.size.main", type: :int,    as: :font_size
@@ -16,7 +17,7 @@ local awful = require("awful")
 
 theme                               = {}
 
-themes_dir                          = awful.util.getdir("config") .. "/themes/<%= local! :theme_name %>"
+themes_dir                          = "<%= local! :theme_dir %>"
 
 theme.wallpaper                     = themes_dir .. "/wall.png"
 
