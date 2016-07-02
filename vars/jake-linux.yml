@@ -4,7 +4,7 @@
 awesome_wm:
   theme:
     name: powerline
-    wallpath: /data/pics/wall.png
+    dir: /data/pics/wall.png
   widgets:
     clock:
     memory:
