@@ -1,0 +1,38 @@
+# => inherits: generic <= #
+
+
+awesome_wm:
+  theme:
+    name: jake
+    wallpath: ~/pics/wall.png
+  widgets:
+    clock:
+    memory:
+    cpu:
+    temperature:
+    disk:
+    battery:
+    audio:
+    network:
+  font:
+    name: Hack
+    size:
+      popup: 9
+      main:  10
+
+terminal:
+  cmd: urxvtc -c screen
+  noscreen: urxvtc
+
+web_browser:
+  cmd: firefox
+
+features:
+  - unclutter
+  - pulseaudio
+  - networkmanager
+  - slack
+  - copyq
+
+
+# vim: set filetype=yaml :

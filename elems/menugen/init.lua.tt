@@ -1,0 +1,100 @@
+-- ────────────────────────────────────────────────────────────────────────────┐
+--                                                                             │
+-- File informations:                                                          │
+--   - Name:    elems/utils/menugen.lua.tt                                     │
+--   - Summary: Module that defines a menu generator.                          │
+--   - Authors:                                                                │
+--     - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)           │
+--                                                                             │
+-- Project informations:                                                       │
+--   - Homepage:        https://github.com/alem0lars/configs-git               │
+--   - Getting started: see README.md in the project root folder               │
+--                                                                             │
+-- Thanks to:                                                                  │
+--   - Harvey Mittens (this is based on his menugen).                          │
+--                                                                             │
+-- License: Apache v2.0 (see below)                                            │
+--                                                                             │
+-- ────────────────────────────────────────────────────────────────────────────┤
+--                                                                             │
+-- Licensed to the Apache Software Foundation (ASF) under one more contributor │
+-- license agreements.  See the NOTICE file distributed with this work for     │
+-- additional information regarding copyright ownership. The ASF licenses this │
+-- file to you under the Apache License, Version 2.0 (the "License"); you may  │
+-- not use this file except in compliance with the License.                    │
+-- You may obtain a copy of the License at                                     │
+--                                                                             │
+--   http://www.apache.org/licenses/LICENSE-2.0                                │
+--                                                                             │
+-- Unless required by applicable law or agreed to in writing, software         │
+-- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT   │
+-- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.            │
+-- See the License for the specific language governing permissions and         │
+-- limitations under the License.                                              │
+--                                                                             │
+-- ────────────────────────────────────────────────────────────────────────────┘
+
+-- Requires ────────────────────────────────────────────────────────────────────
+
+local menu_gen   = require("menubar.menu_gen")
+local menu_utils = require("menubar.utils")
+local pairs      = pairs
+local ipairs     = ipairs
+local table      = table
+local string     = string
+local next       = next
+
+-- Module definition ───────────────────────────────────────────────────────────
+
+module("menugen")
+
+-- Built in menubar should be checking local applications directory.
+menu_gen.all_menu_dirs = {
+  "/usr/share/applications/",
+  "/usr/local/share/applications/",
+  "~/.local/share/applications"
+}
+
+-- Expecting an `wm_name` of awesome omits too many applications and tools.
+menu_utils.wm_name = ""
+
+-- Use `menubar` parsing utils to build start-menu for awesome.
+-- @return awful.menu compliant menu items tree.
+function build_menu()
+  local result = {}
+  local menulist = menu_gen.generate()
+
+  for k,v in pairs(menu_gen.all_categories) do
+    table.insert(result, {k, {}, v["icon"] } )
+  end
+
+  for k, v in ipairs(menulist) do
+    for _, cat in ipairs(result) do
+      if cat[1] == v["category"] then
+        table.insert( cat[2] , { v["name"], v["cmdline"], v["icon"] } )
+        break
+      end
+    end
+  end
+
+  -- Cleanup things.
+  for k,v in ipairs(result) do
+    -- Remove unused categories.
+    if not next(v[2]) then
+      table.remove(result, k)
+    else
+      --Sort entries alphabetically (by name).
+      table.sort(v[2], function (a,b) return string.byte(a[1]) < string.byte(b[1]) end)
+      -- Replace category name with nice name.
+      v[1] = menu_gen.all_categories[v[1]].name
+    end
+  end
+
+  -- Sort categories alphabetically.
+  table.sort(result, function(a,b) return string.byte(a[1]) < string.byte(b[1]) end)
+
+  return result
+end
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- vim: set filetype=eruby.lua :

@@ -1,0 +1,8 @@
+awesome_wm:
+  base_dir: ~/.config/awesome
+
+features:
+  - awesome_wm
+
+
+# vim: set filetype=yaml :

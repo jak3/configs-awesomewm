@@ -1,0 +1,35 @@
+# => inherits: generic <= #
+
+
+awesome_wm:
+  theme:
+    name: jake
+    wallpath: /data/pics/wall.png
+  widgets:
+    clock:
+    memory:
+    cpu:
+    temperature:
+    disk:
+    battery:
+    audio:
+    network:
+  font:
+    name: PragmataPro
+    size:
+      popup: 10
+      main:  12
+
+terminal:
+  cmd: urxvtc -c screen
+  noscreen: urxvtc
+
+web_browser:
+  cmd: firefox
+
+features:
+  - unclutter
+  - pulseaudio
+
+
+# vim: set filetype=yaml :
