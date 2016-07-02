@@ -1,5 +1,6 @@
 <% define_locals do
   variable :"terminal.cmd",    type: :string, as: :terminal_cmd
+  variable :"terminal.noscreen",    type: :string, as: :terminal_noscreen
   variable :"web_browser.cmd", type: :string, as: :web_brower_cmd
 
   variable :"awesome_wm.theme.name", type: :string, as: :theme_name
@@ -42,6 +43,7 @@ local modkey = "Mod4"
 local altkey = "Mod1"
 
 local terminal_cmd = "<%= local! :terminal_cmd %>"
+local terminal_noscreen = "<%= local! :terminal_noscreen %>"
 
 local browser = "<%= local! :web_brower_cmd %>"
 
