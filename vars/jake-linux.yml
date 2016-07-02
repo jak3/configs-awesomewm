@@ -3,7 +3,7 @@
 
 awesome_wm:
   theme:
-    name: jake
+    name: powerline
     wallpath: /data/pics/wall.png
   widgets:
     clock:
@@ -15,10 +15,10 @@ awesome_wm:
     audio:
     network:
   font:
-    name: PragmataPro
+    name: Hack
     size:
-      popup: 10
-      main:  12
+      popup: 9
+      main:  10
 
 terminal:
   cmd: urxvtc -c screen

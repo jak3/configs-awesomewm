@@ -3,7 +3,7 @@
 
 awesome_wm:
   theme:
-    name: jake
+    name: powerline
     wallpath: ~/pics/wall.png
   widgets:
     clock:
