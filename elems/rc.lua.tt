@@ -704,6 +704,8 @@ awful.rules.rules = {
      properties = { tag = tags[1][4] } },
   { rule = { class = "Wfica" }, -- Citrix ... You win! xD
      properties = { tag = tags[1][8] } },
+  { rule = { class = "Tor Browser" },
+     properties = { tag = tags[1][2] } },
   { rule = { class = "Thunderbird" },
      properties = { tag = tags[1][4] } }
 }
