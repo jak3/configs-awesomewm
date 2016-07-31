@@ -28,11 +28,16 @@ web_browser:
   cmd: firefox
 
 features:
-  - unclutter
-  - pulseaudio
-  - networkmanager
-  - slack
   - copyq
+  - firefox
+  - mega
+  - slack
+  - spotify
+  - pulseaudio
+  - thunderbird
+  - unclutter
+  - urxvtd
+  - xkb
 
 
 # vim: set filetype=yaml :
