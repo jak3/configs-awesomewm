@@ -702,6 +702,8 @@ awful.rules.rules = {
      properties = { tag = tags[1][3] } },
   { rule = { class = "Thunderbird" },
      properties = { tag = tags[1][4] } },
+  { rule = { class = "Skype" },
+     properties = { tag = tags[1][4] } },
   { rule = { class = "Slack" },
      properties = { tag = tags[1][4] } },
   { rule = { class = "Spotify" },
@@ -823,6 +825,11 @@ run.once("megasync")
 
 <% if has_feature? :networkmanager %>
 run.once("nm-applet")
+<% end -%>
+
+
+<% if has_feature? :skype %>
+run.once("skype")
 <% end -%>
 
 
