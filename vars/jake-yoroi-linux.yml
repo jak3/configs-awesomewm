@@ -6,14 +6,13 @@ awesome_wm:
     name: powerline
     wallpaper: ~/pics/wall.png
   widgets:
-    clock:
-    memory:
-    cpu:
-    temperature:
-    disk:
-    battery:
     audio:
+    clock:
+    cpu:
+    disk:
+    memory:
     network:
+    temperature:
   font:
     name: Hack
     size:
