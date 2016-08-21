@@ -33,7 +33,6 @@ features:
   - pulseaudio
   - unclutter
   - urxvtd
-  - xkb
 
 
 # vim: set filetype=yaml :

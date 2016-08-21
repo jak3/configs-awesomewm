@@ -37,7 +37,6 @@ features:
   - thunderbird
   - unclutter
   - urxvtd
-  - xkb
 
 
 # vim: set filetype=yaml :

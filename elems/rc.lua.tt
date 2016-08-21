@@ -765,16 +765,6 @@ end)
 
 -- Autostart applications ──────────────────────────────────────────────────────
 
-<% if has_feature? :xkb %>
-awful.util.spawn_with_shell("setxkbmap -option ctrl:nocaps")
-<% end -%>
-
-
-<% if has_feature? :xkb %>
-awful.util.spawn_with_shell("setxkbmap us")
-<% end -%>
-
-
 <% if has_feature? :copyq %>
 run.once("copyq")
 <% end -%>
