@@ -50,6 +50,8 @@ local browser = "<%= local! :web_brower_cmd %>"
 local editor = os.getenv("EDITOR") or "nvim" or "vim" or "vi" or "nano"
 local editor_cmd  = terminal_cmd .. " -e " .. editor
 
+local audio = <% if has_feature? :pulseaudio %>'pulse'<% else %>'default'<% end %>
+
 -- Available layouts.
 
 -- Tags information: tag names and default layouts.
@@ -545,63 +547,31 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "f",      function ()
                                      awful.util.spawn(browser)
                                    end),
-
   -- Manage audio settings.
-  --[[
-  <% if has_feature? :pulseaudio %>
   awful.key({ modkey }, "Prior",  function ()
                                     os.execute(string.format(
-                                        "pactl set-sink-volume %d +4%%",
-                                        volumewidget.sink
+                                      "amixer -D %s sset %s 5%%+",
+                                      audio,
+                                      volumewidget.channel -- Should be Master or ..
                                     ))
                                     volumewidget.update()
                                   end),
   awful.key({ modkey }, "Next",   function ()
                                     os.execute(string.format(
-                                              "pactl set-sink-volume %d -4%%",
-                                              volumewidget.sink
-                                    ))
-                                    volumewidget.update()
-                                  end),
-  awful.key({ }, "Pause",         function ()
-                                    if volumewidget.muted == "yes" then
-                                      os.execute(string.format(
-                                        "pactl set-sink-mute %d no",
-                                        volumewidget.sink
-                                      ))
-                                    else
-                                      os.execute(string.format(
-                                        "pactl set-sink-mute %d yes",
-                                        volumewidget.sink
-                                      ))
-                                    end
-                                    volumewidget.update()
-                                  end),
-  <% else %> <%# Default to Alsa %>
-  awful.key({ modkey }, "Prior",  function ()
-                                    os.execute(string.format(
-                                      "amixer set %s 4%%+",
-                                      volumewidget.channel
-                                    ))
-                                    volumewidget.update()
-                                  end),
-  awful.key({ modkey }, "Next",   function ()
-                                    os.execute(string.format(
-                                      "amixer set %s 4%%-",
+                                      "amixer -D %s sset %s 5%%-",
+                                      audio,
                                       volumewidget.channel
                                     ))
                                     volumewidget.update()
                                   end),
   awful.key({ }, "Pause",         function ()
                                     os.execute(string.format(
-                                      "amixer set %s toggle",
+                                      "amixer -D %s sset %s toggle",
+                                      audio,
                                       volumewidget.channel
                                     ))
                                     volumewidget.update()
                                   end),
-  <% end %>
-  --]]
-
   -- Run LUA code.
   awful.key({ modkey }, "x", function ()
                                awful.prompt.run(

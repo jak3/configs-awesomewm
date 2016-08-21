@@ -21,15 +21,19 @@ awesome_wm:
       main:  10
 
 terminal:
-  cmd: urxvtc -c screen
+  cmd: urxvtc -e /bin/zsh -c screen
   noscreen: urxvtc
 
 web_browser:
   cmd: firefox
 
 features:
-  - unclutter
+  - firefox
+  - mega
   - pulseaudio
+  - unclutter
+  - urxvtd
+  - xkb
 
 
 # vim: set filetype=yaml :
