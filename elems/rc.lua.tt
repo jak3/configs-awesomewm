@@ -550,25 +550,22 @@ globalkeys = awful.util.table.join(
   -- Manage audio settings.
   awful.key({ modkey }, "Prior",  function ()
                                     os.execute(string.format(
-                                      "amixer -D %s sset %s 5%%+",
-                                      audio,
-                                      volumewidget.channel -- Should be Master or ..
+                                      "amixer -D %s sset Master 5%%+",
+                                      audio
                                     ))
                                     volumewidget.update()
                                   end),
   awful.key({ modkey }, "Next",   function ()
                                     os.execute(string.format(
-                                      "amixer -D %s sset %s 5%%-",
-                                      audio,
-                                      volumewidget.channel
+                                      "amixer -D %s sset Master 5%%-",
+                                      audio
                                     ))
                                     volumewidget.update()
                                   end),
   awful.key({ }, "Pause",         function ()
                                     os.execute(string.format(
-                                      "amixer -D %s sset %s toggle",
-                                      audio,
-                                      volumewidget.channel
+                                      "amixer -D %s sset Master toggle",
+                                      audio
                                     ))
                                     volumewidget.update()
                                   end),
