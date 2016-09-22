@@ -52,6 +52,10 @@ local editor_cmd  = terminal_cmd .. " -e " .. editor
 
 local audio = <% if has_feature? :pulseaudio %>'pulse'<% else %>'default'<% end %>
 
+<% if has_feature? :cmstorm %>
+local led_state = false
+<% end %>
+
 -- Available layouts.
 
 -- Tags information: tag names and default layouts.
@@ -547,6 +551,15 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "f",      function ()
                                      awful.util.spawn(browser)
                                    end),
+<% if has_feature? :cmstorm %>
+  awful.key({ }, "Scroll_Lock",    function ()
+                                    os.execute(string.format(
+                                      "xset %sled",
+                                      led_state and '' or '-'
+                                    ))
+                                    led_state = not led_state
+                                   end),
+<% end %>
   -- Manage audio settings.
   awful.key({ modkey }, "Prior",  function ()
                                     os.execute(string.format(

@@ -27,6 +27,7 @@ web_browser:
   cmd: firefox
 
 features:
+  - cmstorm
   - copyq
   - firefox
   - mega
