@@ -582,6 +582,24 @@ globalkeys = awful.util.table.join(
                                     ))
                                     volumewidget.update()
                                   end),
+<% if has_feature? :spotify %>
+  -- Spotify
+  awful.key({ }, "XF86AudioNext", function ()
+    awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+                                  end),
+  awful.key({ }, "XF86AudioPrev", function ()
+    awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+                                  end),
+  awful.key({ }, "XF86AudioPlay", function ()
+    awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+                                  end),
+<% end %>
+<% if has_feature? :copyq %>
+  -- CopyQ
+  awful.key({ modkey }, "q", function ()
+                               os.execute('copyq show')
+                             end),
+<% end %>
   -- Run LUA code.
   awful.key({ modkey }, "x", function ()
                                awful.prompt.run(
