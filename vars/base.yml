@@ -1,10 +1,9 @@
 # => inherits: generic <= #
 
-
 awesome_wm:
   theme:
     name: powerline
-    wallpaper: ~/pics/wall.png
+    wallpaper: /data/pics/wall.jpg
   widgets:
     audio:
     clock:
@@ -27,17 +26,12 @@ web_browser:
   cmd: firefox
 
 features:
-  - cmstorm
   - copyq
   - firefox
+  - gimp
   - mega
-  - skype
-  - slack
-  - spotify
-  - pulseaudio
-  - thunderbird
-  - unclutter
-  - urxvtd
-
+  - mplayer
+  - tor
+  - zathura
 
 # vim: set filetype=yaml :

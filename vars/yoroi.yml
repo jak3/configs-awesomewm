@@ -1,0 +1,18 @@
+# => inherits: base <= #
+
+awesome_wm:
+  theme:
+    wallpaper: ~/pics/wall.png
+
+features:
+  - citrix
+  - cmstorm
+  - pulseaudio
+  - skype
+  - slack
+  - spotify
+  - thunderbird
+  - unclutter
+  - urxvtd
+
+# vim: set filetype=yaml :

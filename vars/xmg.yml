@@ -1,0 +1,7 @@
+# => inherits: base <= #
+
+awesome_wm:
+  widgets:
+    battery:
+
+# vim: set filetype=yaml :
