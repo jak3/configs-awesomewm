@@ -561,14 +561,14 @@ globalkeys = awful.util.table.join(
                                    end),
 <% end %>
   -- Manage audio settings.
-  awful.key({ modkey }, "XF86AudioRaiseVolume",  function ()
+  awful.key({ }, "XF86AudioRaiseVolume",  function ()
                                     os.execute(string.format(
                                       "amixer -D %s sset Master 5%%+",
                                       audio
                                     ))
                                     volumewidget.update()
                                   end),
-  awful.key({ modkey }, "XF86AudioLowerVolume",   function ()
+  awful.key({ }, "XF86AudioLowerVolume",   function ()
                                     os.execute(string.format(
                                       "amixer -D %s sset Master 5%%-",
                                       audio
