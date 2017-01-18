@@ -13,13 +13,13 @@ awesome_wm:
     network:
     temperature:
   font:
-    name: Hack
+    name: Monospace
     size:
       popup: 9
       main:  10
 
 terminal:
-  cmd: urxvtc -e /bin/zsh -c screen
+  cmd: urxvtc -e /bin/zsh -c 'tmux -2'
   noscreen: urxvtc
 
 web_browser:
@@ -31,6 +31,7 @@ features:
   - gimp
   - mega
   - mplayer
+  - spotify
   - tor
   - zathura
 
