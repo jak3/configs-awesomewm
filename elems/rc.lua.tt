@@ -488,10 +488,9 @@ globalkeys = awful.util.table.join(
                                               awful.tag.incmwfact(-0.05)
                                             end),
   awful.key({ modkey, "Shift"   }, "l",     function ()
-                                              awful.tag.incnmaster(-1)
-                                            end),
-  awful.key({ modkey, "Shift"   }, "h",     function ()
-                                              awful.tag.incnmaster(1)
+                                              os.execute(string.format(
+                                                "$HOME/personal_stuff/scripts/layout_switch.sh"
+                                              ))
                                             end),
   awful.key({ modkey, "Control" }, "l",     function ()
                                               awful.tag.incncol(-1)
