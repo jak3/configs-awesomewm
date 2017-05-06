@@ -550,6 +550,9 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "f",      function ()
                                      awful.util.spawn(browser)
                                    end),
+  awful.key({ }, "XF86sleep",      function ()
+                                     awful.util.spawn_with_shell("pm-suspend")
+                                   end),
 <% if has_feature? :cmstorm %>
   awful.key({ }, "Scroll_Lock",    function ()
                                     os.execute(string.format(
