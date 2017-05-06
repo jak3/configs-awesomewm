@@ -88,7 +88,7 @@ local tags_info = {
     layouts[2],
     layouts[3],
     layouts[1],
-    layouts[4]
+    layouts[5]
   }
 }
 
@@ -489,7 +489,7 @@ globalkeys = awful.util.table.join(
                                             end),
   awful.key({ modkey, "Shift"   }, "l",     function ()
                                               os.execute(string.format(
-                                                "$HOME/personal_stuff/scripts/layout_switch.sh"
+                                                "$HOME/personal_stuff/scripts/keyboard_swap_enit.sh"
                                               ))
                                             end),
   awful.key({ modkey, "Control" }, "l",     function ()
@@ -562,6 +562,19 @@ globalkeys = awful.util.table.join(
                                     led_state = not led_state
                                    end),
 <% end %>
+  awful.key({ modkey }, "F8",      function ()
+                                    os.execute(string.format(
+                                      "xbacklight -dec 5"
+                                    ))
+                                   end),
+  awful.key({ modkey }, "F9",      function ()
+                                    os.execute(string.format(
+                                      "xbacklight -inc 5"
+                                    ))
+                                   end),
+  awful.key({ }, "XF86Sleep",      function ()
+                                     awful.util.spawn_with_shell("pm-suspend")
+                                   end),
   -- Manage audio settings.
   awful.key({ }, "XF86AudioRaiseVolume",  function ()
                                     os.execute(string.format(
