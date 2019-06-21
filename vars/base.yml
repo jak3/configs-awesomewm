@@ -26,6 +26,7 @@ web_browser:
   cmd: firefox
 
 features:
+  - cmus
   - copyq
   - firefox
   - gimp

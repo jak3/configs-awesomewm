@@ -50,7 +50,7 @@ local browser = "<%= local! :web_brower_cmd %>"
 local editor = os.getenv("EDITOR") or "nvim" or "vim" or "vi" or "nano"
 local editor_cmd  = terminal_cmd .. " -e " .. editor
 
-local audio = <% if has_feature? :pulseaudio %>'pulse'<% else %>'default'<% end %>
+local audiocard = '@DEFAULT_SINK@'
 
 <% if has_feature? :cmstorm %>
 local led_state = false
@@ -87,7 +87,7 @@ local tags_info = {
     layouts[2],
     layouts[2],
     layouts[3],
-    layouts[1],
+    layouts[6],
     layouts[5]
   }
 }
@@ -578,22 +578,22 @@ globalkeys = awful.util.table.join(
   -- Manage audio settings.
   awful.key({ }, "XF86AudioRaiseVolume",  function ()
                                     os.execute(string.format(
-                                      "amixer -D %s sset Master 5%%+",
-                                      audio
+                                      "pactl set-sink-volume %s +5%%",
+                                      audiocard
                                     ))
                                     volumewidget.update()
                                   end),
   awful.key({ }, "XF86AudioLowerVolume",   function ()
                                     os.execute(string.format(
-                                      "amixer -D %s sset Master 5%%-",
-                                      audio
+                                      "pactl -- set-sink-volume %s -5%%",
+                                      audiocard
                                     ))
                                     volumewidget.update()
                                   end),
   awful.key({ }, <% if has_feature? :cmstorm %>"Pause"<% else %>"XF86AudioMute"<% end %>, function ()
                                     os.execute(string.format(
-                                      "amixer -D %s sset Master toggle",
-                                      audio
+                                      "pactl set-sink-mute %s toggle",
+                                      audiocard
                                     ))
                                     volumewidget.update()
                                   end),
@@ -608,6 +608,22 @@ globalkeys = awful.util.table.join(
                                   end),
   awful.key({ }, "XF86AudioPlay", function ()
     awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+                                  end),
+<% end %>
+<% if has_feature? :cmus %>
+  -- Cmus
+
+  awful.key({ modkey, "Control" }, "s", function ()
+    awful.util.spawn("cmus-remote -k +10")
+                                  end),
+  awful.key({ modkey, "Control" }, "p", function ()
+    awful.util.spawn("cmus-remote -u")
+                                  end),
+  awful.key({ modkey, "Control" }, "b", function ()
+    awful.util.spawn("cmus-remote -r")
+                                  end),
+  awful.key({ modkey, "Control" }, "f", function ()
+    awful.util.spawn("cmus-remote -n")
                                   end),
 <% end %>
 <% if has_feature? :copyq %>
