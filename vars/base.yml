@@ -19,8 +19,8 @@ awesome_wm:
       main:  10
 
 terminal:
-  cmd: urxvtc -e /bin/zsh -c 'tmux -2'
-  noscreen: urxvtc
+  cmd: urxvt256c -e /bin/zsh -c 'tmux -2'
+  noscreen: urxvt256c
 
 web_browser:
   cmd: firefox
@@ -32,6 +32,7 @@ features:
   - gimp
   - mega
   - mplayer
+  - rofi
   - spotify
   - tor
   - zathura

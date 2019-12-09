@@ -531,7 +531,7 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
   -- Main Menu.
-  awful.key({ modkey, }, "w", function () main_menu:show() end),
+  awful.key({ modkey, "Control" }, "w", function () main_menu:show() end),
 
   -- Prompt.
   awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
@@ -550,6 +550,18 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, }, "f",      function ()
                                      awful.util.spawn(browser)
                                    end),
+<% if has_feature? :rofi %>
+  awful.key({ modkey, }, "e",      function ()
+                                    os.execute(string.format(
+                                      "python3 rofimoji.py"
+                                    ))
+                                   end),
+  awful.key({ modkey, }, "w",      function ()
+                                    os.execute(string.format(
+                                      "rofi -show window"
+                                    ))
+                                   end),
+<% end %>
   awful.key({ }, "XF86sleep",      function ()
                                      awful.util.spawn_with_shell("pm-suspend")
                                    end),
@@ -885,7 +897,7 @@ run.once("unclutter -root")
 <% end -%>
 
 <% if local? :with_urxvtd %>
-run.once("urxvtd")
+run.once("urxvt256cd")
 <% end -%>
 
 -- ─────────────────────────────────────────────────────────────────────────────
