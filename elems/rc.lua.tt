@@ -553,7 +553,7 @@ globalkeys = awful.util.table.join(
 <% if has_feature? :rofi %>
   awful.key({ modkey, }, "e",      function ()
                                     os.execute(string.format(
-                                      "python3 rofimoji.py"
+                                      "rofimoji.py"
                                     ))
                                    end),
   awful.key({ modkey, }, "w",      function ()
