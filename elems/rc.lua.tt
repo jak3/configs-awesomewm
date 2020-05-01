@@ -176,6 +176,10 @@ local main_menu_launcher = awful.widget.launcher({
 -- Menubar configuration.
 menubar.utils.terminal = terminal_cmd -- Set terminal for apps that require it.
 
+-- Keyboard layout indicator
+local klayout = { "us", "il" }
+local klidx = 1
+
 -- Wibox ───────────────────────────────────────────────────────────────────────
 
 markup = lain.util.markup
@@ -264,18 +268,20 @@ volicon = wibox.widget.imagebox(beautiful.widget_vol)
 <% if has_feature? :pulseaudio %>
 volumewidget = lain.widgets.pulseaudio({
   settings = function()
+    local _vl, _vr = tonumber(volume_now.left), tonumber(volume_now.right)
+    local vl, vr = _vl == nil and 0 or _vl,
+                   _vr == nil and 0 or _vr
     if volume_now.muted == "yes" then
       volicon:set_image(beautiful.widget_vol_mute)
-    elseif tonumber(volume_now.left)  == 0 and
-           tonumber(volume_now.right) == 0 then
+    elseif vl == 0 and vr == 0 then
       volicon:set_image(beautiful.widget_vol_no)
-    elseif tonumber(volume_now.left) + tonumber(volume_now.right) <= 50 then
+    elseif vl + vr <= 50 then
       volicon:set_image(beautiful.widget_vol_low)
     else
       volicon:set_image(beautiful.widget_vol)
     end
 
-    widget:set_text(volume_now.left .. "-" .. volume_now.right .. "%")
+    widget:set_text(vl .. "-" .. vr .. "%")
   end
 })
 <% else %> <%# Fallback to ALSA %>
@@ -490,6 +496,12 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Shift"   }, "l",     function ()
                                               os.execute(string.format(
                                                 "$HOME/personal_stuff/scripts/keyboard_swap_enit.sh"
+                                              ))
+                                            end),
+  awful.key({ modkey, "Shift"   }, "0",     function()
+                                              klidx = klidx % #(klayout) + 1
+                                              os.execute(string.format(
+                                                "setxkbmap " .. klayout[klidx]
                                               ))
                                             end),
   awful.key({ modkey, "Control" }, "l",     function ()
