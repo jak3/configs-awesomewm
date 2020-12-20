@@ -574,9 +574,6 @@ globalkeys = awful.util.table.join(
                                     ))
                                    end),
 <% end %>
-  awful.key({ }, "XF86sleep",      function ()
-                                     awful.util.spawn_with_shell("pm-suspend")
-                                   end),
 <% if has_feature? :cmstorm %>
   awful.key({ }, "Scroll_Lock",    function ()
                                     os.execute(string.format(
@@ -597,7 +594,7 @@ globalkeys = awful.util.table.join(
                                     ))
                                    end),
   awful.key({ }, "XF86Sleep",      function ()
-                                     awful.util.spawn_with_shell("pm-suspend")
+                                     awful.util.spawn_with_shell("loginctl suspend")
                                    end),
   -- Manage audio settings.
   awful.key({ }, "XF86AudioRaiseVolume",  function ()
