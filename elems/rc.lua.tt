@@ -309,6 +309,7 @@ neticon:buttons(awful.util.table.join(awful.button({ }, 1, function ()
   awful.util.spawn_with_shell(iptraf)
 end)))
 netwidget = lain.widgets.net({
+  iface = { "wlan0", "eth0" },
   settings = function()
     widget:set_markup(markup("#7AC82E", " " .. net_now.received)
                       .. " " ..
